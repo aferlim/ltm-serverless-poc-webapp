@@ -9,7 +9,7 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import TextField from '@material-ui/core/TextField'
 
-function SimpleDialog(props) {
+const SimpleDialog = (props) => {
   const { onClose, userName, open } = props
 
   const handleClose = () => {
@@ -34,6 +34,13 @@ function SimpleDialog(props) {
             variant="outlined"
             value={nameValue}
             onChange={(e) => setNameValue(e.target.value)}
+            onKeyPress={(ev) => {
+              if (ev.key === 'Enter') {
+                setNameValue(ev.target.value)
+                handleClose()
+                ev.preventDefault()
+              }
+            }}
           />
         </form>
       </DialogContent>
@@ -53,32 +60,3 @@ SimpleDialog.propTypes = {
 }
 
 export default SimpleDialog
-
-// export default function SimpleDialogDemo() {
-//   const [open, setOpen] = React.useState(false)
-//   const [selectedValue, setSelectedValue] = React.useState(emails[1])
-
-//   const handleClickOpen = () => {
-//     setOpen(true)
-//   }
-
-//   const handleClose = (value) => {
-//     setOpen(false)
-//     setSelectedValue(value)
-//   }
-
-//   return (
-//     <div>
-//       <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
-//       <br />
-//       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-//         Open simple dialog
-//       </Button>
-//       <SimpleDialog
-//         selectedValue={selectedValue}
-//         open={open}
-//         onClose={handleClose}
-//       />
-//     </div>
-//   )
-// }

@@ -117,16 +117,12 @@ const useStyles = makeStyles((theme) => ({
     width: '90%',
   },
   avatarButton: {
-    right: theme.spacing(1),
+    right: theme.spacing(1.6),
     top: theme.spacing(2),
   },
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
     color: '#fff',
-  },
-
-  chart: {
-    paddingLeft: '20%',
   },
 }))
 
