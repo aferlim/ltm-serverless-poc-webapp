@@ -5,17 +5,11 @@ trigger:
 
 variables:
   # Subscription needs a storage account and a website
-  azureSubscription: "Visual Studio Professional"
-
-  # Needs to be a linux app service and there are a bunch of env variables that need to be set on it
-  serverWebAppName: "YOUR_SERVER_NAME"
-
+  azureSubscription: "Visual Studio Professional (660d3b8a-8752-4b02-87f5-e4b07c5ac69e)"
   # This needs to have a static website setup with the default container ($web)
   clientBlobAccountName: "ltmserverlessstatic"
-
   # This is provided to the client app so it knows how to hit the right server
   functionEndpoint: "https://votepoc.azurewebsites.net"
-
   # We build on linux to remove any dependancies on windows stuff / can move to GCP or AWS
   vmImageName: "ubuntu-latest"
 
@@ -108,9 +102,9 @@ stages:
 
                 - task: AzureCLI@2
                   inputs:
-                    azureSubscription: 'Visual Studio Professional (660d3b8a-8752-4b02-87f5-e4b07c5ac69e)'
-                    scriptType: 'bash'
-                    scriptLocation: 'inlineScript'
+                    azureSubscription: "$(azureSubscription)"
+                    scriptType: "bash"
+                    scriptLocation: "inlineScript"
                     inlineScript: 'az storage blob upload-batch -d "\$web" --account-name "$(clientBlobAccountName)" -s "$(System.DefaultWorkingDirectory)/unzip/$(Build.BuildId)/build"'
                 # - task: AzureRmWebAppDeployment@4
                 #   inputs:
