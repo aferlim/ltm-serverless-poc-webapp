@@ -62,7 +62,9 @@ class Home extends Component {
     this.closeSimpleDialog = this.closeSimpleDialog.bind(this)
   }
 
-  baseUrl = 'http://localhost:7071/api'
+  baseUrl = process.env.FUNCTION_SERVICE_ENDPOINT
+    ? `${process.env.FUNCTION_SERVICE_ENDPOINT}/api`
+    : 'https://votepoc.azurewebsites.net/api'
 
   componentDidMount = async () => {
     this.setDataChart(this.state.vote)
