@@ -37,23 +37,6 @@ stages:
               CI: true
               FUNCTION_SERVICE_ENDPOINT: "$(functionEndpoint)"
 
-          # - task: PublishTestResults@2
-          #   condition: succeededOrFailed()
-          #   inputs:
-          #     testRunner: JUnit
-          #     testResultsFiles: "$(System.DefaultWorkingDirectory)/server/junit.xml"
-          #   displayName: "Publish test results"
-
-          # - task: CopyFiles@2
-          #   inputs:
-          #     SourceFolder: "$(System.DefaultWorkingDirectory)"
-          #     Contents: |
-          #       $(System.DefaultWorkingDirectory)/server/dist/**/*.js
-          #       $(System.DefaultWorkingDirectory)/server/package.json
-          #       $(System.DefaultWorkingDirectory)/server/yarn.lock
-          #     TargetFolder: "$(Build.ArtifactStagingDirectory)/output"
-          #   displayName: "Copy SERVER files to artifact directory"
-
           - task: CopyFiles@2
             inputs:
               SourceFolder: "$(System.DefaultWorkingDirectory)"
@@ -106,16 +89,3 @@ stages:
                     scriptType: "bash"
                     scriptLocation: "inlineScript"
                     inlineScript: 'az storage blob upload-batch -d "\$web" --account-name "$(clientBlobAccountName)" -s "$(System.DefaultWorkingDirectory)/unzip/$(Build.BuildId)/build"'
-                # - task: AzureRmWebAppDeployment@4
-                #   inputs:
-                #     ConnectionType: "AzureRM"
-                #     azureSubscription: "$(azureSubscription)"
-                #     appType: "webAppLinux"
-                #     WebAppName: "$(serverWebAppName)"
-                #     packageForLinux: "$(System.ArtifactsDirectory)/drop/$(Build.BuildId).zip"
-                #     RuntimeStack: "NODE|10.16"
-                #     StartupCommand: "cd server && node dist/index.js"
-                #     ScriptType: "Inline Script"
-                #     InlineScript: |
-                #       cd server
-                #       npm install
