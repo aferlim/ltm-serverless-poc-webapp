@@ -108,9 +108,9 @@ stages:
 
                 - task: AzureCLI@2
                   inputs:
-                    azureSubscription: "$(azureSubscription)"
-                    scriptType: "bash"
-                    scriptLocation: "inlineScript"
+                    azureSubscription: 'Visual Studio Professional (660d3b8a-8752-4b02-87f5-e4b07c5ac69e)'
+                    scriptType: 'bash'
+                    scriptLocation: 'inlineScript'
                     inlineScript: 'az storage blob upload-batch -d "\$web" --account-name "$(clientBlobAccountName)" -s "$(System.DefaultWorkingDirectory)/unzip/$(Build.BuildId)/build"'
                 # - task: AzureRmWebAppDeployment@4
                 #   inputs:
