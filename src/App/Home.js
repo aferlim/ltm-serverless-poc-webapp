@@ -64,7 +64,7 @@ class Home extends Component {
 
   baseUrl = process.env.FUNCTION_SERVICE_ENDPOINT
     ? `${process.env.FUNCTION_SERVICE_ENDPOINT}/api`
-    : 'https://votepoc.azurewebsites.net/api'
+    : 'https://votenaldo.azurewebsites.net/api'
 
   componentDidMount = async () => {
     this.setDataChart(this.state.vote)
