@@ -85,7 +85,7 @@ stages:
 
                 - task: AzureCLI@2
                   inputs:
-                    azureSubscription: "$(azureSubscription)"
-                    scriptType: "bash"
-                    scriptLocation: "inlineScript"
+                    azureSubscription: 'Azure Naldo'
+                    scriptType: 'bash'
+                    scriptLocation: 'inlineScript'
                     inlineScript: 'az storage blob upload-batch -d "\$web" --account-name "$(clientBlobAccountName)" -s "$(System.DefaultWorkingDirectory)/unzip/$(Build.BuildId)/build"'
