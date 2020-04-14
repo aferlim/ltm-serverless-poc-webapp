@@ -7,7 +7,7 @@ variables:
   # Subscription needs a storage account and a website
   azureSubscription: "Visual Studio Professional (660d3b8a-8752-4b02-87f5-e4b07c5ac69e)"
   # This needs to have a static website setup with the default container ($web)
-  clientBlobAccountName: "ltmserverlessstatic"
+  clientBlobAccountName: "naldostatic"
   # This is provided to the client app so it knows how to hit the right server
   functionEndpoint: "https://votepoc.azurewebsites.net"
   # We build on linux to remove any dependancies on windows stuff / can move to GCP or AWS
