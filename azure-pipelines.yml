@@ -14,8 +14,8 @@ variables:
   vmImageName: "ubuntu-latest"
 
 stages:
-  - stage: CI
-    displayName: Build stage
+  - stage: Build
+    displayName: CI Aula 2
     jobs:
       - job: Build
         displayName: Build
@@ -59,8 +59,8 @@ stages:
             inputs:
               targetPath: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
 
-  - stage: Deploy-PROD
-    displayName: Deploy stage
+  - stage: Deploy
+    displayName: Deploy Prod
     dependsOn: Build
     condition: succeeded()
     jobs:
