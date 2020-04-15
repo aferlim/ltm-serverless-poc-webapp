@@ -14,7 +14,7 @@ variables:
   vmImageName: "ubuntu-latest"
 
 stages:
-  - stage: Build
+  - stage: CI
     displayName: Build stage
     jobs:
       - job: Build
@@ -59,7 +59,7 @@ stages:
             inputs:
               targetPath: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
 
-  - stage: Deploy
+  - stage: Deploy-PROD
     displayName: Deploy stage
     dependsOn: Build
     condition: succeeded()
@@ -85,7 +85,7 @@ stages:
 
                 - task: AzureCLI@2
                   inputs:
-                    azureSubscription: 'Azure Naldo'
-                    scriptType: 'bash'
-                    scriptLocation: 'inlineScript'
+                    azureSubscription: "NaldoAzureAula2"
+                    scriptType: "bash"
+                    scriptLocation: "inlineScript"
                     inlineScript: 'az storage blob upload-batch -d "\$web" --account-name "$(clientBlobAccountName)" -s "$(System.DefaultWorkingDirectory)/unzip/$(Build.BuildId)/build"'
